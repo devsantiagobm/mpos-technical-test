@@ -1,0 +1,75 @@
+<!-- TODO MOSTRAR UN MENSAJE E ICONO CUANDO NO HAYAN ELEMENTOSA EN EL CARRITO -->
+@if (isVisible) {
+
+<div class="shopping-cart" (click)="closeCart()" @cart>
+    <section class="shopping-cart__container" (click)="$event.stopPropagation()">
+
+        <header class="shopping-cart__header">
+            <h3 class="shopping-cart__title">Shopping Cart</h3>
+
+            <button class="shopping-cart__button" (click)="closeCart()">
+                <lucide-angular [img]="CloseIcon" size="16" />
+            </button>
+        </header>
+
+        <hr class="shopping-cart__divisor" />
+
+
+
+        <div class="shopping-cart__list">
+
+            @for (item of [12,3,5,6,8,6,2,1]; track $index) {
+            <article class="cart-element">
+                <picture class="cart-element__picture">
+                    <img class="cart-element__image"
+                        src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png" alt="">
+                </picture>
+
+
+                <div class="cart-element__content">
+                    <header class="cart-element__row">
+                        <h4 class="cart-element__title">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h4>
+                        <div class="cart-element__price">$4.999</div>
+                    </header>
+
+                    <div class="cart-element__row">
+
+                        <div class="cart-element__actions">
+                            <button class="cart-element__action">-</button>
+                            <span class="cart-element__amount">0</span>
+                            <button class="cart-element__action">+</button>
+                        </div>
+
+
+                        <button class="cart-element__button">
+                            <lucide-angular [img]="DeleteIcon" size="16" />
+                        </button>
+                    </div>
+                </div>
+
+            </article>
+
+            }
+
+
+        </div>
+
+
+        <footer class="shopping-cart__footer">
+            <hr class="shopping-cart__divisor" />
+
+            <div class="shopping-cart__subtotal-container">
+                <span class="shopping-cart__subtotal-label">Subtotal</span>
+                <span class="shopping-cart__subtotal">$32.45</span>
+            </div>
+
+            <p class="shopping-cart__tax-text">Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor</p>
+
+            <atom-button>
+                <lucide-angular [img]="ShoppingCartIcon" size="18" />
+                Checkout Now
+            </atom-button>
+        </footer>
+    </section>
+</div>
+}

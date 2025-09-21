@@ -1,0 +1,38 @@
+<header class="header">
+    <div class="header__container">
+        <h1 class="header__logo">BestShop</h1>
+
+        <nav class="header__nav">
+            <ul class="header__list">
+                <li>
+                    <a routerLink="/home" class="header__link" routerLinkActive="header__link--active">Home</a>
+                </li>
+                <li>
+                    <a [routerLink]="'home'" class="header__link">Joyería</a>
+                </li>
+                <li>
+                    <a [routerLink]="'home'" class="header__link">Electrónica</a>
+                </li>
+                <li>
+                    <a [routerLink]="'home'" class="header__link">Masculino</a>
+                </li>
+                <li>
+                    <a [routerLink]="'home'" class="header__link">Femenino</a>
+                </li>
+            </ul>
+        </nav>
+
+        <button class="header__button" (click)="toggleOpenCart()">
+            <!-- TODO: AGREGAR EL NUMERO DE UNIDADES ACA COMO EN AUDIOPHILE -->
+            <lucide-angular [img]="ShoppingCartIcon" [size]="22"></lucide-angular>
+        </button>
+    </div>
+
+    <purchase-shopping-cart [isVisible]="isCartOpen" (close)="toggleOpenCart()"></purchase-shopping-cart>
+</header>
+
+<main class="content">
+    <div class="content__container">
+        <router-outlet />
+    </div>
+</main>

@@ -1,0 +1,1 @@
+export type Category = "men's clothing" | "jewelery" | "electronics" | "women's clothing"
