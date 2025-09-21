@@ -1,0 +1,17 @@
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>
+
+@if (!routerLink) {
+<button [type]="type" [class]="'button button--' + variant" [disabled]="disabled || isLoading">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+
+    @if (isLoading) {<atom-loader [size]="18" />}
+
+</button>
+}
+@else {
+<a [class]="'button button--' + variant" [routerLink]="routerLink">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+</a>
+}
