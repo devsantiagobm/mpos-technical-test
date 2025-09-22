@@ -52,7 +52,7 @@
 
             <p class="shopping-cart__tax-text">Selected products ready for your order</p>
 
-            <atom-button routerLink="checkout">
+            <atom-button (click)="goToCheckout()">
                 <lucide-angular [img]="ShoppingCartIcon" size="18" />
                 Checkout Now
             </atom-button>

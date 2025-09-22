@@ -1,18 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonComponent } from './button.component';
+import { AtomButtonComponent } from './button.component';
+import { AtomLoaderComponent } from '../loader/loader.component';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-describe('ButtonComponent', () => {
-  let component: ButtonComponent;
-  let fixture: ComponentFixture<ButtonComponent>;
+describe('AtomButtonComponent', () => {
+  let component: AtomButtonComponent;
+  let fixture: ComponentFixture<AtomButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ButtonComponent]
+      imports: [AtomButtonComponent, AtomLoaderComponent, RouterLink, CommonModule]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ButtonComponent);
+    fixture = TestBed.createComponent(AtomButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

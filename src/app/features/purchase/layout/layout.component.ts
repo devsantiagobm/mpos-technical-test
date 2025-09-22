@@ -18,7 +18,6 @@ export class PurchaseLayoutComponent {
 
   public isMenuActive = false;
   public isCartOpen = false;
-  private eRef = inject(ElementRef);
   private productsService = inject(ProductsService)
 
   public categories = computed(() => {

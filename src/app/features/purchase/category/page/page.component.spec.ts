@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CategoryPageComponent } from './page.component';
+import { provideHttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('CategoryPageComponent', () => {
   let component: CategoryPageComponent;
@@ -10,7 +13,7 @@ describe('CategoryPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CategoryPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CategoryPageComponent);
     component = fixture.componentInstance;

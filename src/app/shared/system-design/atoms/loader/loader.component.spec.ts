@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoaderComponent } from './loader.component';
+import { AtomLoaderComponent } from './loader.component';
 
-describe('LoaderComponent', () => {
-  let component: LoaderComponent;
-  let fixture: ComponentFixture<LoaderComponent>;
+describe('AtomLoaderComponent', () => {
+  let component: AtomLoaderComponent;
+  let fixture: ComponentFixture<AtomLoaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoaderComponent]
+      imports: [AtomLoaderComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LoaderComponent);
+    fixture = TestBed.createComponent(AtomLoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
