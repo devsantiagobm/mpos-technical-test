@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { PurchaseProductComponent } from "../components/product/product.component";
+import { ProductsService } from '@/core/services/products/products.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'purchase-category-page',
   imports: [PurchaseProductComponent],
   templateUrl: './page.component.html',
   styleUrl: './page.component.scss',
-  standalone: true
+  standalone: true,
+
 })
-export class CategoryPageComponent {
-  public product = {
-    "id": 1,
-    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    "price": 109.95,
-    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    "category": "men's clothing",
-    "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
-    "rating": {
-      "rate": 3.9,
-      "count": 120
-    }
+export class CategoryPageComponent implements OnInit {
+  private productsService = inject(ProductsService)
+  private route = inject(ActivatedRoute);
+
+  private _categoryId = signal<string | null>(null);
+  public categoryId = this._categoryId.asReadonly();
+
+  public get products() {
+    const id = this._categoryId();
+    return id ? this.productsService.products().filter(p => p.category === id) : [];
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this._categoryId.set(params.get('id'));
+    });
   }
 }

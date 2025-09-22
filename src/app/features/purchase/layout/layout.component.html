@@ -3,23 +3,19 @@
         <h1 class="header__logo">BestShop</h1>
 
         <nav class="header__nav">
+            @if (categories().length > 0) {
             <ul class="header__list">
                 <li>
-                    <a routerLink="/home" class="header__link" routerLinkActive="header__link--active">Home</a>
+                    <a [routerLink]="'home'" routerLinkActive="header__link--active" class="header__link">Home</a>
                 </li>
+
+                @for (category of categories(); track $index) {
                 <li>
-                    <a [routerLink]="'home'" class="header__link">Joyería</a>
+                    <a [routerLink]="'category/' + category" routerLinkActive="header__link--active" class="header__link">{{category}}</a>
                 </li>
-                <li>
-                    <a [routerLink]="'home'" class="header__link">Electrónica</a>
-                </li>
-                <li>
-                    <a [routerLink]="'home'" class="header__link">Masculino</a>
-                </li>
-                <li>
-                    <a [routerLink]="'home'" class="header__link">Femenino</a>
-                </li>
+                }
             </ul>
+            }
         </nav>
 
         <button class="header__button" (click)="toggleOpenCart()">
@@ -27,10 +23,9 @@
             <lucide-angular [img]="ShoppingCartIcon" [size]="22"></lucide-angular>
         </button>
     </div>
-
     <purchase-shopping-cart [isVisible]="isCartOpen" (close)="toggleOpenCart()"></purchase-shopping-cart>
 </header>
-
+{{categories() | json}}
 <main class="content">
     <div class="content__container">
         <router-outlet />
