@@ -96,6 +96,8 @@ body {
     font-optical-sizing: auto;
     font-weight: var(--font-weight-regular);
     font-style: normal;
+    max-width: 100dvw;
+    overflow-x: hidden;
     color: var(--neutral-950);
 }
 
