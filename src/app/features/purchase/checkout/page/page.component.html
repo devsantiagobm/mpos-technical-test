@@ -1,0 +1,90 @@
+<section class="checkout">
+    <header class="checkout__header">
+        <atom-button class="checkout__go-back-button" (click)="goBack()" variant="outline" [fitContent]="true">
+            <lucide-angular [img]="ArrowLeftIcon"></lucide-angular>
+            Go back
+        </atom-button>
+        <h1 class="checkout__title">Checkout</h1>
+        <p class="checkout__subtitle">Complete your order details</p>
+    </header>
+
+    <form class="checkout__grid" [formGroup]="form" (ngSubmit)="checkout()">
+        <div class="checkout__form">
+            <div class="checkout__section">
+                <h2 class="checkout__section-title">Contact Information</h2>
+                <atom-input label="Email" name="email" [control]="form.controls.contact.controls.email"
+                    placeholder="you@email.com"></atom-input>
+            </div>
+
+            <div class="checkout__section">
+                <h2 class="checkout__section-title">Shipping Address</h2>
+                <div class="checkout__row">
+                    <atom-input label="First Name" name="firstName"
+                        [control]="form.controls.shipping.controls.firstName" placeholder="Santiago"></atom-input>
+                    <atom-input label="Last Name" name="lastName" [control]="form.controls.shipping.controls.lastName"
+                        placeholder="Barrera"></atom-input>
+                </div>
+                <atom-input label="Address" name="address" [control]="form.controls.shipping.controls.address"
+                    placeholder="123 Street"></atom-input>
+                <div class="checkout__row">
+                    <atom-input label="Zip Code" name="zip" [control]="form.controls.shipping.controls.zip"
+                        placeholder="10001"></atom-input>
+                    <atom-input label="City" name="city" [control]="form.controls.shipping.controls.city"
+                        placeholder="Medellín"></atom-input>
+                </div>
+                <atom-input label="Country" name="country" [control]="form.controls.shipping.controls.country"
+                    placeholder="Colombia"></atom-input>
+            </div>
+
+            <div class="checkout__section">
+                <h2 class="checkout__section-title">Payment Information</h2>
+                <atom-input label="Card Number" name="cardNumber" [control]="form.controls.payment.controls.cardNumber"
+                    placeholder="1234567890123456"></atom-input>
+                <div class="checkout__row">
+                    <atom-input label="Expiration Date" name="expDate"
+                        [control]="form.controls.payment.controls.expDate" placeholder="MM/YY"></atom-input>
+                    <atom-input label="CVC" name="cvc" [control]="form.controls.payment.controls.cvc" placeholder="123"
+                        type="password"></atom-input>
+                </div>
+            </div>
+        </div>
+
+        <aside class="checkout__summary">
+            <div class="checkout__products">
+                @for (product of products; track product.id) {
+                <article class="checkout__product">
+                    <img class="checkout__product-image" [src]="product.image" [alt]="product.title" />
+                    <div class="checkout__product-info">
+                        <h3 class="checkout__product-title">{{ product.title }}</h3>
+                        <p class="checkout__product-qty">x{{ product.quantity }}</p>
+                    </div>
+                    <div class="checkout__product-price">
+                        ${{ (product.price * product.quantity) }}
+                    </div>
+                </article>
+                }
+            </div>
+
+            <h2 class="checkout__summary-title">Order Summary</h2>
+            <div class="checkout__summary-row">
+                <span>Subtotal</span>
+                <span>${{subtotal}}</span>
+            </div>
+            <div class="checkout__summary-row">
+                <span>Shipping</span>
+                <span>${{costs.shipping}}</span>
+            </div>
+            <div class="checkout__summary-row">
+                <span>Taxes</span>
+                <span>${{costs.tax}}</span>
+            </div>
+            <hr class="checkout__divider" />
+            <div class="checkout__summary-row checkout__summary-row--total">
+                <span>Total</span>
+                <span>${{total}}</span>
+            </div>
+
+            <atom-button type="submit" [isLoading]="isLoading()">Complete Checkout</atom-button>
+        </aside>
+    </form>
+</section>

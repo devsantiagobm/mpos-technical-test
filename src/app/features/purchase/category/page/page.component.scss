@@ -1,19 +1,5 @@
 .category {
 
-    animation: fade-in .5s ease;
-
-    @keyframes fade-in {
-        from {
-            opacity: 0;
-            transform: translateY(16px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
     &__header {
         display: flex;
         flex-direction: column;
@@ -26,9 +12,11 @@
         font-family: "Space Mono", monospace;
         font-size: 2.25rem;
         text-transform: uppercase;
+        text-align: center;
     }
-
+    
     &__description {
+        text-align: center;
         color: var(--neutral-500);
     }
 

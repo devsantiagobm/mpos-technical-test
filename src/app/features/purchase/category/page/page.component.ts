@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { PurchaseProductComponent } from "../components/product/product.component";
 import { ProductsService } from '@/core/services/products/products.service';
 import { ActivatedRoute } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'purchase-category-page',
@@ -9,6 +10,15 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './page.component.html',
   styleUrl: './page.component.scss',
   standalone: true,
+  animations: [
+    trigger('fadeIn', [
+      // animate whenever the bound value changes
+      transition('* => *', [
+        style({ opacity: 0, transform: 'translateY(16px)' }),
+        animate('400ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 
 })
 export class CategoryPageComponent implements OnInit {

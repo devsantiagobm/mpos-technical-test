@@ -12,11 +12,15 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
     top: 0;
     z-index: 1;
 
+    @media screen and (max-width: 792px) {
+        padding-inline: clamp(32px, 5dvw, 64px);
+    }
+
 
     &__container {
         display: grid;
         max-width: $max-width;
-        grid-template-columns: 160px auto 160px;
+        grid-template-columns: 160px auto 120px;
         margin: 0 auto;
     }
 
@@ -30,11 +34,16 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
     &__nav {
         display: grid;
         place-items: center;
+
+        @media screen and (max-width: 1026px){
+            
+        }
     }
 
     &__link {
         transition: color .2s ease;
         position: relative;
+        text-wrap: nowrap;
 
         &--active {
             color: var(--orange-500);
@@ -85,6 +94,11 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
     background-color: var(--neutral-100);
     padding: $padding;
     position: relative;
+
+
+    @media screen and (max-width: 792px) {
+        padding-inline: clamp(32px, 5dvw, 64px);
+    }
 
     &::before {
         content: "";
