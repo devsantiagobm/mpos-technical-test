@@ -4,6 +4,7 @@ import { LucideAngularModule, ShoppingCart, Trash, XIcon } from 'lucide-angular'
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CartService } from '../../services/cart/cart.service';
 import { Product } from '@/core/entities/Product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'purchase-shopping-cart',
@@ -29,6 +30,7 @@ export class ShoppingCartComponent {
   readonly ShoppingCartIcon = ShoppingCart;
 
   private cartService = inject(CartService)
+  private router = inject(Router)
 
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>()
@@ -40,6 +42,11 @@ export class ShoppingCartComponent {
 
   public closeCart() {
     this.close.emit()
+  }
+
+  public goToCheckout() {
+    this.close.emit()
+    this.router.navigate(['/home/checkout'])
   }
 
   public addProduct(product: Product) {

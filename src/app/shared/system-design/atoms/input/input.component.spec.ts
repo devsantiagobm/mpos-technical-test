@@ -1,18 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputComponent } from './input.component';
+import { AtomInputComponent } from './input.component';
+import { LucideAngularModule } from 'lucide-angular';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorMessagesPipe } from '@/shared/pipes/error-messages/error-messages.pipe';
 
-describe('InputComponent', () => {
-  let component: InputComponent;
-  let fixture: ComponentFixture<InputComponent>;
+describe('AtomInputComponent', () => {
+  let component: AtomInputComponent;
+  let fixture: ComponentFixture<AtomInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InputComponent]
+      imports: [AtomInputComponent, LucideAngularModule, ReactiveFormsModule, ErrorMessagesPipe]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InputComponent);
+    fixture = TestBed.createComponent(AtomInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

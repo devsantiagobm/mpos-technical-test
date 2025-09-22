@@ -26,5 +26,12 @@
         row-gap: 48px;
         column-gap: 24px;
         grid-template-columns: repeat(auto-fit, minmax(325px, 375fr));
+        max-width: 100%;
+        overflow-x: hidden;
+
+        @media screen and (max-width: 572px) {
+            grid-template-columns: 100%;
+            
+        }
     }
 }
