@@ -4,6 +4,7 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
 
 
 .header {
+    max-width: 100%;
     padding: $padding;
     background-color: var(--black-700);
     color: var(--white-900);
@@ -22,6 +23,11 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
         max-width: $max-width;
         grid-template-columns: 160px auto 120px;
         margin: 0 auto;
+
+        @media screen and (max-width: 1026px) {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     &__logo {
@@ -35,9 +41,27 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
         display: grid;
         place-items: center;
 
-        @media screen and (max-width: 1026px){
-            
+        @media screen and (max-width: 1026px) {
+            background-color: var(--black-700);
+            position: absolute;
+            top: calc(100% + 16px);
+            padding: 20px 24px;
+            right: 24px;
+            border-radius: 12px;
+            transition: transform .5s ease;
+            transform: translateX(150%);
+
+
+            &--active {
+                transform: translateX(0%);
+            }
         }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
     }
 
     &__link {
@@ -58,6 +82,10 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
         font-size: .85rem;
         animation: fade-in .3s ease;
 
+
+        @media screen and (max-width: 1026px) {
+            flex-direction: column;
+        }
 
         @keyframes fade-in {
             from {
@@ -81,6 +109,19 @@ $padding: 32px clamp(64px, 7.5dvw, 120px);
         place-items: center;
         justify-self: flex-end;
         transition: background-color .2s ease;
+
+
+        &--active {
+            background-color: var(--black-500);
+        }
+
+        &--menu {
+            display: none;
+
+            @media screen and (max-width: 1026px) {
+                display: grid;
+            }
+        }
 
         @media (hover:hover) {
             &:hover {

@@ -2,7 +2,9 @@
     <div class="header__container">
         <h1 class="header__logo">BestShop</h1>
 
-        <nav class="header__nav">
+        <nav class="header__nav"
+        
+        [ngClass]="{'header__nav--active': isMenuActive}">
             @if (categories().length > 0) {
             <ul class="header__list">
                 <li>
@@ -20,10 +22,14 @@
             }
         </nav>
 
-        <button class="header__button" (click)="toggleOpenCart()">
-            <!-- TODO: AGREGAR EL NUMERO DE UNIDADES ACA COMO EN AUDIOPHILE -->
-            <lucide-angular [img]="ShoppingCartIcon" [size]="22"></lucide-angular>
-        </button>
+        <div class="header__actions">
+            <button class="header__button" (click)="toggleOpenCart()">
+                <lucide-angular [img]="ShoppingCartIcon" [size]="20"></lucide-angular>
+            </button>
+            <button [ngClass]="{'header__button--active': isMenuActive}" class="header__button header__button--menu" (click)="toggleMenu()">
+                <lucide-angular [img]="MenuIcon" [size]="20"></lucide-angular>
+            </button>
+        </div>
     </div>
     <purchase-shopping-cart [isVisible]="isCartOpen" (close)="toggleOpenCart()"></purchase-shopping-cart>
 </header>
