@@ -1,10 +1,14 @@
+import { ErrorMessagesPipe } from '@/shared/pipes/error-messages/error-messages.pipe';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
 
 @Component({
   selector: 'atom-input',
   templateUrl: './input.component.html',
+  standalone: true,
+  imports: [LucideAngularModule, ReactiveFormsModule, ErrorMessagesPipe],
   styleUrls: ['./input.component.scss'],
   animations: [
     trigger('errorMessage', [
@@ -18,7 +22,10 @@ import { FormControl } from '@angular/forms';
     ]),
   ]
 })
-export class InputComponent {
+export class AtomInputComponent {
+  readonly PasswordIcon = Eye;
+  readonly NotPasswordIcon = EyeOff;
+
   @Input() label?: string;
   @Input() control!: FormControl;
   @Input() name!: string;

@@ -1,10 +1,11 @@
 @if (categoryId()) {
 
-<section class="category">
+<section class="category" [@fadeIn]="categoryId()">
     <header class="category__header">
 
         <h1 class="category__title">{{categoryId()}}</h1>
-        <p class="category__description">Explore our selection of products carefully chosen for you. Find quality, style, and fair prices in every category</p>
+        <p class="category__description">Explore our selection of products carefully chosen for you. Find quality,
+            style, and fair prices in every category</p>
     </header>
 
 

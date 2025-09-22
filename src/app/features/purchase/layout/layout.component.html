@@ -6,12 +6,14 @@
             @if (categories().length > 0) {
             <ul class="header__list">
                 <li>
-                    <a [routerLink]="'home'" routerLinkActive="header__link--active" class="header__link">Home</a>
+                    <a [routerLink]="'/home'" [routerLinkActiveOptions]="{ exact: true }"
+                        routerLinkActive="header__link--active" class="header__link">Home</a>
                 </li>
 
                 @for (category of categories(); track $index) {
                 <li>
-                    <a [routerLink]="'category/' + category" routerLinkActive="header__link--active" class="header__link">{{category}}</a>
+                    <a [routerLink]="'category/' + category" routerLinkActive="header__link--active"
+                        class="header__link">{{category}}</a>
                 </li>
                 }
             </ul>
@@ -25,7 +27,7 @@
     </div>
     <purchase-shopping-cart [isVisible]="isCartOpen" (close)="toggleOpenCart()"></purchase-shopping-cart>
 </header>
-{{categories() | json}}
+
 <main class="content">
     <div class="content__container">
         <router-outlet />
