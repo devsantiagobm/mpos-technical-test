@@ -1,6 +1,4 @@
-<!-- TODO MOSTRAR UN MENSAJE E ICONO CUANDO NO HAYAN ELEMENTOSA EN EL CARRITO -->
 @if (isVisible) {
-
 <div class="shopping-cart" (click)="closeCart()" @cart>
     <section class="shopping-cart__container" (click)="$event.stopPropagation()">
 
@@ -14,62 +12,68 @@
 
         <hr class="shopping-cart__divisor" />
 
-
-
+        @if (products().length > 0) {
         <div class="shopping-cart__list">
-
-            @for (item of [12,3,5,6,8,6,2,1]; track $index) {
+            @for (product of products(); track product.id) {
             <article class="cart-element">
                 <picture class="cart-element__picture">
-                    <img class="cart-element__image"
-                        src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png" alt="">
+                    <img class="cart-element__image" [src]="product.image" [alt]="product.title + ' image'">
                 </picture>
-
 
                 <div class="cart-element__content">
                     <header class="cart-element__row">
-                        <h4 class="cart-element__title">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h4>
-                        <div class="cart-element__price">$4.999</div>
+                        <h4 class="cart-element__title">{{product.title}}</h4>
+                        <div class="cart-element__price">${{product.price}}</div>
                     </header>
 
                     <div class="cart-element__row">
-
                         <div class="cart-element__actions">
-                            <button class="cart-element__action">-</button>
-                            <span class="cart-element__amount">0</span>
-                            <button class="cart-element__action">+</button>
+                            <button class="cart-element__action" (click)="substractProduct(product)">-</button>
+                            <span class="cart-element__amount">{{product.quantity}}</span>
+                            <button class="cart-element__action" (click)="addProduct(product)">+</button>
                         </div>
 
-
-                        <button class="cart-element__button">
+                        <button class="cart-element__button" (click)="removeProduct(product)">
                             <lucide-angular [img]="DeleteIcon" size="16" />
                         </button>
                     </div>
                 </div>
-
             </article>
-
             }
-
-
         </div>
-
 
         <footer class="shopping-cart__footer">
             <hr class="shopping-cart__divisor" />
 
             <div class="shopping-cart__subtotal-container">
                 <span class="shopping-cart__subtotal-label">Subtotal</span>
-                <span class="shopping-cart__subtotal">$32.45</span>
+                <span class="shopping-cart__subtotal">${{total}}</span>
             </div>
 
-            <p class="shopping-cart__tax-text">Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor</p>
+            <p class="shopping-cart__tax-text">Selected products ready for your order</p>
 
             <atom-button>
                 <lucide-angular [img]="ShoppingCartIcon" size="18" />
                 Checkout Now
             </atom-button>
         </footer>
+        }
+        @else {
+        <section class="shopping-cart__empty">
+            <picture class="shopping-cart__empty-picture">
+                <img class="shopping-cart__empty-image" src="illustration/empty-cart.png" alt="Empty shopping cart illustration" />
+            </picture>
+            <h4 class="shopping-cart__empty-title">Your cart is empty</h4>
+            <p class="shopping-cart__empty-text">
+                Looks like you haven’t added anything yet. Start exploring our categories and fill your cart with your
+                favorite items!
+            </p>
+            <atom-button (click)="closeCart()">
+                <lucide-angular [img]="ShoppingCartIcon" size="18" />
+                Start Shopping
+            </atom-button>
+        </section>
+        }
     </section>
 </div>
 }

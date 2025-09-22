@@ -1,15 +1,17 @@
+@if (categoryId()) {
+
 <section class="category">
     <header class="category__header">
 
-        <h1 class="category__title">Joyería</h1>
-        <p class="category__description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt inventore
-            aperiam iste voluptas? Eos ullam nostrum.</p>
+        <h1 class="category__title">{{categoryId()}}</h1>
+        <p class="category__description">Explore our selection of products carefully chosen for you. Find quality, style, and fair prices in every category</p>
     </header>
 
 
     <div class="category__grid">
-        @for (item of [1,2,3,4,5,6,7,8,9,10]; track $index) {
+        @for (product of products; track $index) {
         <purchase-product [product]="product"></purchase-product>
         }
     </div>
 </section>
+}

@@ -1,40 +1,43 @@
 <article class="product">
     <picture class="product__picture">
         <!-- TODO AGREGAR WIDTH Y HEIGHT -->
-        <img class="product__image" [src]="product.image" [alt]="product.title + ' image'">
+        <img class="product__image" [src]="product().image" [alt]="product().title + ' image'">
     </picture>
 
 
     <div class="product__content">
 
         <h2 class="product__title">
-            Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops asdjkdksakdajkd
+            {{product().title}}
         </h2>
 
         <p class="product__description">
-            Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the
-            padded
-            sleeve, your everyday
+            {{product().description}}
         </p>
 
 
         <div class="product__metadata">
-            <span class="product__price">$2.999</span>
-            <span class="product__rate">⭐4.6</span>
+            <span class="product__price">${{product().price}}</span>
+            <span class="product__rate">⭐{{product().rating.rate}}</span>
         </div>
 
         <footer class="product__footer">
-            <div class="product__actions">
-                <button class="product__action">-</button>
-                <span class="product__amount">0</span>
-                <button class="product__action">+</button>
-            </div>
 
 
-            <atom-button class="product__button" variant="square" [fitContent]="false">
+
+            @if (quantity() === 0) {
+            <atom-button class="product__button" variant="square" [fitContent]="false" (click)="add()">
                 <lucide-angular [img]="ShoppingCartIcon" size="14"></lucide-angular>
                 Add to Cart
             </atom-button>
+            }
+            @else {
+            <div class="product__actions">
+                <button class="product__action" (click)="substract()">-</button>
+                <span class="product__amount">{{quantity()}}</span>
+                <button class="product__action" (click)="add()">+</button>
+            </div>
+            }
         </footer>
     </div>
 </article>

@@ -1,7 +1,9 @@
 import { AtomButtonComponent } from '@/shared/system-design/atoms/button/button.component';
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
 import { LucideAngularModule, ShoppingCart, Trash, XIcon } from 'lucide-angular';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { CartService } from '../../services/cart/cart.service';
+import { Product } from '@/core/entities/Product';
 
 @Component({
   selector: 'purchase-shopping-cart',
@@ -26,6 +28,8 @@ export class ShoppingCartComponent {
   readonly DeleteIcon = Trash;
   readonly ShoppingCartIcon = ShoppingCart;
 
+  private cartService = inject(CartService)
+
   @Input() isVisible = false;
   @Output() close = new EventEmitter<void>()
 
@@ -36,5 +40,25 @@ export class ShoppingCartComponent {
 
   public closeCart() {
     this.close.emit()
+  }
+
+  public addProduct(product: Product) {
+    this.cartService.add(product, 1)
+  }
+
+  public removeProduct(product: Product) {
+    this.cartService.remove(product.id)
+  }
+
+  public substractProduct(product: Product) {
+    this.cartService.subtract(product, 1)
+  }
+
+  public get products() {
+    return this.cartService.items;
+  }
+
+  public get total() {
+    return this.cartService.total();
   }
 }
