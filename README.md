@@ -1,59 +1,42 @@
-# PruebaTecnicaMpos
+# Demo de la Aplicación Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.17.
+**Demo:**  https://mpos-technical-test.vercel.app
 
-## Development server
 
-To start a local development server, run:
+## Ejecución del proyecto
+
+Para ejecutar este proyecto necesitas:  
+
+- Angular CLI versión 19 o superior  
+- Node.js compatible con Angular 19  
+
+Pasos:  
 
 ```bash
+git clone https://github.com/devsantiagobm/mpos-technical-test.git santiago-barrera-test
+cd santiago-barrera-test
+npm install
 ng serve
 ```
+Luego abre tu navegador en http://localhost:4200
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## Persistencia
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+La persistencia de datos en esta aplicación se logra usando señales de Angular junto con localStorage, lo que permite mantener el estado de la aplicación incluso después de recargar la página.
 
-```bash
-ng generate component component-name
-```
+## Principales decisiones de diseño
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- La aplicación sigue una Screaming Architecture basada en features. Actualmente, la única feature implementada es purchase (compras). La arquitectura está pensada para crecer la aplicación de manera sencilla y sin complicaciones.
 
-```bash
-ng generate --help
-```
+- Para una explicación más detallada sobre esta decisión, revisa:
+app/features/auth/readme.md
 
-## Building
 
-To build the project run:
+- Cada página, módulo o feature tiene su propio contexto, pudiendo contener:
 
-```bash
-ng build
-```
+    Componentes, servicios, utilidades y otros elementos específicos de esa feature
+     
+    Esta estructura permite que cada feature crezca de manera independiente y mantenga su encapsulamiento.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Para los componentes se utilizó Atomic Design, lo que permite organizar los componentes en átomos, moléculas y organismos.

@@ -14,8 +14,6 @@ Ejemplo actual:
 
 Ejemplo futuro:
 
-Ejemplo futuro:
-
     features/
     ├── purchase/ # Proceso de compras
     ├── auth/ # Autenticación y registro de usuarios
@@ -26,7 +24,7 @@ Ejemplo futuro:
 ## Objetivo de esta carpeta
 
 - Demostrar cómo se organizarán futuros features.  
-- Explicar por qué la carpeta `features/` existe aunque actualmente solo haya uno.  
+- Explicar por qué la carpeta `features/` existe aunque actualmente solo haya un proceso.  
 - Evitar refactors en el futuro, dejando la estructura lista para crecer.
 
 ## Regla de diseño
